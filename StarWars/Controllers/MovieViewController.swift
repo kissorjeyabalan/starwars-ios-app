@@ -10,6 +10,7 @@ import UIKit
 
 class MovieViewController: UIViewController {
     let CellIdentifier = "MovieCellIdentifier"
+    let SegueMovieDetailsViewController = "MovieDetailsViewController"
     
     @IBOutlet weak var movieTableView: UITableView!
     var movies: [Movie] = [];
@@ -39,6 +40,15 @@ class MovieViewController: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueMovieDetailsViewController {
+            if let indexPath = movieTableView.indexPathForSelectedRow {
+                let movieDetailsViewController = segue.destination as! MovieDetailsViewController
+                movieDetailsViewController.movie = movies[indexPath.row]
+            }
+        }
+    }
 }
 
 
@@ -64,6 +74,7 @@ extension MovieViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MovieViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        //do stuff
+        performSegue(withIdentifier: "MovieDetailsViewController", sender: self)
+        movieTableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -17,6 +17,7 @@
 		2F9DC27A2195AE9E001CD048 /* JSONNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2792195AE9E001CD048 /* JSONNull.swift */; };
 		2F9DC27C2195B03B001CD048 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC27B2195B03B001CD048 /* Movie.swift */; };
 		2F9DC27F2195B1AA001CD048 /* URLSession+Swapi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC27E2195B1AA001CD048 /* URLSession+Swapi.swift */; };
+		2F9DC2812195CC8A001CD048 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2802195CC8A001CD048 /* MovieDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		2F9DC2792195AE9E001CD048 /* JSONNull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNull.swift; sourceTree = "<group>"; };
 		2F9DC27B2195B03B001CD048 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		2F9DC27E2195B1AA001CD048 /* URLSession+Swapi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Swapi.swift"; sourceTree = "<group>"; };
+		2F9DC2802195CC8A001CD048 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				2F9DC25B2195A047001CD048 /* MovieViewController.swift */,
+				2F9DC2802195CC8A001CD048 /* MovieDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F9DC2812195CC8A001CD048 /* MovieDetailsViewController.swift in Sources */,
 				2F9DC27F2195B1AA001CD048 /* URLSession+Swapi.swift in Sources */,
 				2F9DC25C2195A047001CD048 /* MovieViewController.swift in Sources */,
 				2F9DC25A2195A047001CD048 /* AppDelegate.swift in Sources */,
