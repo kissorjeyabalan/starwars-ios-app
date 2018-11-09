@@ -18,7 +18,7 @@ class MovieViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        navigationItem.title = "StarWars"
         movieTableView.delegate = self
         movieTableView.dataSource = self;
         
@@ -27,16 +27,15 @@ class MovieViewController: UIViewController {
     
     func fetchAllMovies() {
         URLSession.shared.getAllMovies {
-            movies, url, error in
+            movies, _, _ in
             if let movies = movies {
-                print("movies", movies)
                 DispatchQueue.main.async {
                     self.movies = movies.results
+                    self.movies.sort(by: { (m1, m2) -> Bool in
+                        return m1.episodeID < m2.episodeID
+                    })
                     self.movieTableView.reloadData()
                 }
-            }
-            if let error = error {
-                print("error", error)
             }
         }
     }
@@ -73,7 +72,7 @@ extension MovieViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension MovieViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "MovieDetailsViewController", sender: self)
         movieTableView.deselectRow(at: indexPath, animated: true)
     }
