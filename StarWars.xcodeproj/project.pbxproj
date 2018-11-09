@@ -8,22 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		2F9DC25A2195A047001CD048 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2592195A047001CD048 /* AppDelegate.swift */; };
-		2F9DC25C2195A047001CD048 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC25B2195A047001CD048 /* ViewController.swift */; };
+		2F9DC25C2195A047001CD048 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC25B2195A047001CD048 /* MovieViewController.swift */; };
 		2F9DC25F2195A047001CD048 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9DC25D2195A047001CD048 /* Main.storyboard */; };
 		2F9DC2622195A047001CD048 /* StarWars.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2602195A047001CD048 /* StarWars.xcdatamodeld */; };
 		2F9DC2642195A048001CD048 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9DC2632195A048001CD048 /* Assets.xcassets */; };
 		2F9DC2672195A048001CD048 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9DC2652195A048001CD048 /* LaunchScreen.storyboard */; };
+		2F9DC2782195AE34001CD048 /* SwapiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2772195AE34001CD048 /* SwapiResult.swift */; };
+		2F9DC27A2195AE9E001CD048 /* JSONNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2792195AE9E001CD048 /* JSONNull.swift */; };
+		2F9DC27C2195B03B001CD048 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC27B2195B03B001CD048 /* Movie.swift */; };
+		2F9DC27F2195B1AA001CD048 /* URLSession+Swapi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC27E2195B1AA001CD048 /* URLSession+Swapi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2F9DC2562195A047001CD048 /* StarWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9DC2592195A047001CD048 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2F9DC25B2195A047001CD048 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2F9DC25B2195A047001CD048 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		2F9DC25E2195A047001CD048 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F9DC2612195A047001CD048 /* StarWars.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StarWars.xcdatamodel; sourceTree = "<group>"; };
 		2F9DC2632195A048001CD048 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F9DC2662195A048001CD048 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F9DC2682195A048001CD048 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F9DC2772195AE34001CD048 /* SwapiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapiResult.swift; sourceTree = "<group>"; };
+		2F9DC2792195AE9E001CD048 /* JSONNull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNull.swift; sourceTree = "<group>"; };
+		2F9DC27B2195B03B001CD048 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		2F9DC27E2195B1AA001CD048 /* URLSession+Swapi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Swapi.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,67 @@
 		2F9DC2582195A047001CD048 /* StarWars */ = {
 			isa = PBXGroup;
 			children = (
-				2F9DC2592195A047001CD048 /* AppDelegate.swift */,
-				2F9DC25B2195A047001CD048 /* ViewController.swift */,
+				2F9DC27D2195B194001CD048 /* Extensions */,
+				2F9DC2762195ADE8001CD048 /* Utility */,
+				2F9DC2732195A2DA001CD048 /* Other */,
+				2F9DC2712195A1B9001CD048 /* Controllers */,
+				2F9DC26F2195A1AB001CD048 /* Models */,
+				2F9DC2702195A1B3001CD048 /* Views */,
+			);
+			path = StarWars;
+			sourceTree = "<group>";
+		};
+		2F9DC26F2195A1AB001CD048 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2F9DC2772195AE34001CD048 /* SwapiResult.swift */,
+				2F9DC2792195AE9E001CD048 /* JSONNull.swift */,
+				2F9DC27B2195B03B001CD048 /* Movie.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2F9DC2702195A1B3001CD048 /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				2F9DC25D2195A047001CD048 /* Main.storyboard */,
-				2F9DC2632195A048001CD048 /* Assets.xcassets */,
 				2F9DC2652195A048001CD048 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2F9DC2712195A1B9001CD048 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2F9DC25B2195A047001CD048 /* MovieViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2F9DC2732195A2DA001CD048 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				2F9DC2632195A048001CD048 /* Assets.xcassets */,
+				2F9DC2592195A047001CD048 /* AppDelegate.swift */,
 				2F9DC2682195A048001CD048 /* Info.plist */,
 				2F9DC2602195A047001CD048 /* StarWars.xcdatamodeld */,
 			);
-			path = StarWars;
+			path = Other;
+			sourceTree = "<group>";
+		};
+		2F9DC2762195ADE8001CD048 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		2F9DC27D2195B194001CD048 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2F9DC27E2195B1AA001CD048 /* URLSession+Swapi.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +198,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F9DC25C2195A047001CD048 /* ViewController.swift in Sources */,
+				2F9DC27F2195B1AA001CD048 /* URLSession+Swapi.swift in Sources */,
+				2F9DC25C2195A047001CD048 /* MovieViewController.swift in Sources */,
 				2F9DC25A2195A047001CD048 /* AppDelegate.swift in Sources */,
+				2F9DC27C2195B03B001CD048 /* Movie.swift in Sources */,
+				2F9DC27A2195AE9E001CD048 /* JSONNull.swift in Sources */,
 				2F9DC2622195A047001CD048 /* StarWars.xcdatamodeld in Sources */,
+				2F9DC2782195AE34001CD048 /* SwapiResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +352,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2J3672AKUW;
-				INFOPLIST_FILE = StarWars/Info.plist;
+				INFOPLIST_FILE = StarWars/Other/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -296,7 +360,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = no.octopod.StarWars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -306,7 +370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2J3672AKUW;
-				INFOPLIST_FILE = StarWars/Info.plist;
+				INFOPLIST_FILE = StarWars/Other/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -314,7 +378,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = no.octopod.StarWars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
