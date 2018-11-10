@@ -10,9 +10,6 @@ import Foundation
 import CoreData
 
 class Movie: NSManagedObject, Codable {
-    
-    var characterUrls: [String] = []
-    
     enum CodingKeys: String, CodingKey {
         case title, director, producer
         case crawl = "opening_crawl"
@@ -20,6 +17,8 @@ class Movie: NSManagedObject, Codable {
         case releaseDate = "release_date"
         case characterUrls = "characters"
     }
+    
+    var characterUrls: [URL] = []
     
     public func encode(to encoder: Encoder) throws {
         var json = encoder.container(keyedBy: CodingKeys.self)
@@ -45,7 +44,7 @@ class Movie: NSManagedObject, Codable {
             self.crawl = try json.decodeIfPresent(String.self, forKey: .crawl)
             self.episode = try json.decodeIfPresent(Int32.self, forKey: .episode) ?? -1
             self.releaseDate = try json.decodeIfPresent(String.self, forKey: .releaseDate)
-            self.characterUrls = try json.decodeIfPresent([String].self, forKey: .characterUrls)!
+            self.characterUrls = try json.decodeIfPresent([URL].self, forKey: .characterUrls)!
 
         }
         
