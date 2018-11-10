@@ -10,6 +10,5 @@ import Foundation
 
 struct SwapiResult<T: Codable>: Codable {
     let count: Int
-    let next, previous: JSONNull?
     let results: [T]
 }

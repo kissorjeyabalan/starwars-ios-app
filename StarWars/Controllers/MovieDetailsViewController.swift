@@ -21,7 +21,7 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = movie.title
-        episodeLabel.text = "Episode \(movie.episodeID)"
+        episodeLabel.text = "Episode \(movie.episode)"
         directorLabel.text = movie.director
         producerLabel.text = movie.producer
         releaseDateLabel.text = movie.releaseDate

@@ -9,7 +9,7 @@
 import Foundation
 
 extension URLSession {
-    fileprivate func getSwapi<T: Codable>(with url: URL, completionHandler: @escaping (T?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+    func getSwapi<T: Codable>(with url: URL, completionHandler: @escaping (T?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         return self.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
                 completionHandler(nil, response, error)
@@ -30,5 +30,9 @@ extension URLSession {
     
     func getMovie(with id: Int, completionHandler: @escaping(Movie?, URLResponse?, Error?) -> Void) {
         self.getMovie(with: URL(string: "https://swapi.co/api/films/\(id)")!, completionHandler: completionHandler)
+    }
+    
+    func getAllCharacters(completionHandler: @escaping(SwapiResult<Character>?, URLResponse?, Error?) -> Void) {
+        self.getSwapi(with: URL(string: "https://swapi.co/api/people/")!, completionHandler: completionHandler).resume()
     }
 }

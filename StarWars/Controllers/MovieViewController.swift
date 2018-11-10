@@ -9,8 +9,8 @@
 import UIKit
 
 class MovieViewController: UIViewController {
-    let CellIdentifier = "MovieCellIdentifier"
-    let SegueMovieDetailsViewController = "MovieDetailsViewController"
+    fileprivate let CellIdentifier = "MovieCellIdentifier"
+    fileprivate let SegueMovieDetailsViewController = "MovieDetailsViewController"
     
     @IBOutlet weak var movieTableView: UITableView!
     var movies: [Movie] = [];
@@ -26,7 +26,7 @@ class MovieViewController: UIViewController {
      }
     
     func fetchAllMovies() {
-        URLSession.shared.getAllMovies {
+        /*URLSession.shared.getAllMovies {
             movies, _, _ in
             if let movies = movies {
                 DispatchQueue.main.async {
@@ -37,7 +37,7 @@ class MovieViewController: UIViewController {
                     self.movieTableView.reloadData()
                 }
             }
-        }
+        }*/
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
