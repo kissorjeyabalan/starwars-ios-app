@@ -11,6 +11,7 @@ import UIKit
 class CharacterViewController: UIViewController {
     
     fileprivate let CellIdentifier = "CharacterCellIdentifier"
+    let viewContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     var characters: [Character] = []
     
     @IBOutlet weak var characterCollectionView: UICollectionView!
@@ -21,24 +22,34 @@ class CharacterViewController: UIViewController {
         characterCollectionView.delegate = self
         characterCollectionView.dataSource = self
         
-        fetchAllCharacters()
+        characters = Character.getAll(in: viewContext!)
+        characterCollectionView.reloadData()
     }
     
-    func fetchAllCharacters() {
-        /*URLSession.shared.getAllCharacters {
-            characters, _, _ in
-            if let characters = characters {
-                DispatchQueue.main.async {
-                    self.characters = characters.results
-                    self.characterCollectionView.reloadData()
-                }
-            }
-        }*/
+    override func viewWillAppear(_ animated: Bool) {
+        characterCollectionView.reloadData()
     }
 }
 
-extension CharacterViewController: UICollectionViewDelegate {
+extension CharacterViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = characterCollectionView.bounds.width/2.0
+        let height = width
+        
+        return CGSize(width: width, height: height)
+    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 }
 
 extension CharacterViewController: UICollectionViewDataSource {
@@ -49,7 +60,15 @@ extension CharacterViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier, for: indexPath) as! CharacterCell
-        cell.characterName.text = characters[indexPath.row].name
+        let character = characters[indexPath.row]
+        cell.characterName.text = character.name
+        
+        if (character.favorite) {
+            cell.characterImage.backgroundColor = UIColor.orange
+        } else {
+            cell.characterImage.backgroundColor = UIColor.black
+        }
+        
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(toggleFavorite(sender:)))
         tap.numberOfTapsRequired = 1
@@ -60,8 +79,13 @@ extension CharacterViewController: UICollectionViewDataSource {
     
     @objc func toggleFavorite(sender: UITapGestureRecognizer) {
         print("TOGGLED FAVORITE")
-        let tappedImage = sender.view as! UIImageView
-        tappedImage.backgroundColor = UIColor.orange
+        let tapPoint = sender.location(in: characterCollectionView)
+        let indexPath = characterCollectionView.indexPathForItem(at: tapPoint)
+        if let index = indexPath {
+            let character = characters[index.row]
+            character.toggleFavorite(in: viewContext!)
+            characterCollectionView.reloadItems(at: [index])
+        }
     }
     
 }
