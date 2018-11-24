@@ -21,9 +21,11 @@
 		2F9DC2832195E173001CD048 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2822195E173001CD048 /* CharacterViewController.swift */; };
 		2F9DC2862195E520001CD048 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2852195E520001CD048 /* CharacterCell.swift */; };
 		2F9DC2882195FBAC001CD048 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2872195FBAC001CD048 /* Character.swift */; };
+		2FAFDD7221A83CE3009E3AF3 /* ApiSynchronizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAFDD7121A83CE3009E3AF3 /* ApiSynchronizationViewController.swift */; };
 		2FDB4CCA21976C450090201D /* APISynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB4CC921976C450090201D /* APISynchronizer.swift */; };
 		2FF0C1BB2197808F007FD53B /* CodingUserInfoKey+Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF0C1BA2197808F007FD53B /* CodingUserInfoKey+Context.swift */; };
 		2FF0C1BD21978D85007FD53B /* Date+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF0C1BC21978D85007FD53B /* Date+Localization.swift */; };
+		2FFB610921A9DB4F006059A7 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB610821A9DB4F006059A7 /* FavoriteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,9 +45,11 @@
 		2F9DC2822195E173001CD048 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		2F9DC2852195E520001CD048 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		2F9DC2872195FBAC001CD048 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		2FAFDD7121A83CE3009E3AF3 /* ApiSynchronizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiSynchronizationViewController.swift; sourceTree = "<group>"; };
 		2FDB4CC921976C450090201D /* APISynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISynchronizer.swift; sourceTree = "<group>"; };
 		2FF0C1BA2197808F007FD53B /* CodingUserInfoKey+Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodingUserInfoKey+Context.swift"; sourceTree = "<group>"; };
 		2FF0C1BC21978D85007FD53B /* Date+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Localization.swift"; sourceTree = "<group>"; };
+		2FFB610821A9DB4F006059A7 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 				2F9DC25B2195A047001CD048 /* MovieViewController.swift */,
 				2F9DC2802195CC8A001CD048 /* MovieDetailsViewController.swift */,
 				2F9DC2822195E173001CD048 /* CharacterViewController.swift */,
+				2FAFDD7121A83CE3009E3AF3 /* ApiSynchronizationViewController.swift */,
+				2FFB610821A9DB4F006059A7 /* FavoriteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -227,11 +233,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FAFDD7221A83CE3009E3AF3 /* ApiSynchronizationViewController.swift in Sources */,
 				2FDB4CCA21976C450090201D /* APISynchronizer.swift in Sources */,
 				2F9DC2832195E173001CD048 /* CharacterViewController.swift in Sources */,
 				2F9DC2812195CC8A001CD048 /* MovieDetailsViewController.swift in Sources */,
 				2F9DC2882195FBAC001CD048 /* Character.swift in Sources */,
 				2FF0C1BD21978D85007FD53B /* Date+Localization.swift in Sources */,
+				2FFB610921A9DB4F006059A7 /* FavoriteViewController.swift in Sources */,
 				2F9DC27F2195B1AA001CD048 /* URLSession+Swapi.swift in Sources */,
 				2F9DC25C2195A047001CD048 /* MovieViewController.swift in Sources */,
 				2F9DC25A2195A047001CD048 /* AppDelegate.swift in Sources */,

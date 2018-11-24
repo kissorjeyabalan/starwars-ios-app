@@ -20,6 +20,10 @@ class Movie: NSManagedObject, Codable {
     
     var characterUrls: [URL] = []
     
+    func toggleFavorite(in context: NSManagedObjectContext) {
+        self.favorite = !favorite
+    }
+    
     public func encode(to encoder: Encoder) throws {
         var json = encoder.container(keyedBy: CodingKeys.self)
         try json.encode(title, forKey: .title)
@@ -52,12 +56,12 @@ class Movie: NSManagedObject, Codable {
     
     class func findOrCreate(with matching: Movie, in context: NSManagedObjectContext) throws -> Movie {
         let req: NSFetchRequest<Movie> = Movie.fetchRequest()
-        req.predicate = NSPredicate(format: "episode = %@", matching.episode)
+        req.predicate = NSPredicate(format: "title = %@", matching.title!)
         
         do {
             let found = try context.fetch(req)
             if found.count > 0 {
-                assert(found.count > 1, "Movie.findOrCreate -- database failure")
+                assert(found.count == 1, "Movie.findOrCreate -- database failure")
                 return found[0]
             }
         } catch {
@@ -71,8 +75,49 @@ class Movie: NSManagedObject, Codable {
         movie.director = matching.director
         movie.producer = matching.producer
         movie.releaseDate = matching.releaseDate
-        movie.characters = matching.characters
+        movie.characterUrls = matching.characterUrls
+        
         return movie
         
     }
+    
+    class func updateOrCreate(with matching: Movie, in context: NSManagedObjectContext) throws -> Movie {
+        let req: NSFetchRequest<Movie> = Movie.fetchRequest()
+        req.predicate = NSPredicate(format: "title = %@", matching.title!)
+        var movie: Movie? = nil;
+        
+        do {
+            let found = try context.fetch(req)
+            
+            if found.count > 0 {
+                movie = found[0]
+            } else {
+                movie = Movie(context: context)
+            }
+        } catch {
+            throw error
+        }
+        
+        
+        movie!.title = matching.title
+        movie!.episode = matching.episode
+        movie!.crawl = matching.crawl
+        movie!.director = matching.director
+        movie!.producer = matching.producer
+        movie!.releaseDate = matching.releaseDate
+        movie!.characterUrls = matching.characterUrls
+        movie!.favorite = matching.favorite
+        
+        return movie!
+    }
+    
+    class func getAll(in context: NSManagedObjectContext) -> [Movie] {
+        let req: NSFetchRequest<Movie> = Movie.fetchRequest()
+        do {
+            return try context.fetch(req)
+        } catch {
+            return []
+        }
+    }
 }
+	

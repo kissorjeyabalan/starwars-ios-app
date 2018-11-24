@@ -11,4 +11,6 @@ import Foundation
 struct SwapiResult<T: Codable>: Codable {
     let count: Int
     let results: [T]
+    let next: URL?
+    let previous: URL?
 }

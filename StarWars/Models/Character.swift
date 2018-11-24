@@ -22,6 +22,13 @@ class Character: NSManagedObject, Codable {
     var movieUrls: [URL] = []
     
     
+    func toggleFavorite(in context: NSManagedObjectContext) {
+        self.favorite = !favorite
+        try? context.save()
+    }
+    
+    
+    
     public func encode(to encoder: Encoder) throws {
         var json = encoder.container(keyedBy: CodingKeys.self)
         try json.encode(name, forKey: .name)
@@ -63,7 +70,8 @@ class Character: NSManagedObject, Codable {
         do {
             let found = try context.fetch(req)
             if found.count > 0 {
-                assert(found.count > 1, "Character.findOrCreate -- database failure")
+                assert(found.count == 1, "Character.findOrCreate -- database failure")
+                print("found \(found.count) for \(matching.name)")
                 return found[0]
             }
         } catch {
@@ -72,7 +80,54 @@ class Character: NSManagedObject, Codable {
         
         let character = Character(context: context)
         character.name = matching.name
+        character.height = matching.height
+        character.mass = matching.mass
+        character.hairColor = matching.hairColor
+        character.skinColor = matching.skinColor
+        character.eyeColor = matching.eyeColor
+        character.birthYear = matching.birthYear
+        character.gender = matching.gender
+        character.movieUrls = matching.movieUrls
         
         return character
+    }
+    
+    class func updateOrCreate(with matching: Character, in context: NSManagedObjectContext) throws -> Character {
+        let req: NSFetchRequest<Character> = Character.fetchRequest()
+        req.predicate = NSPredicate(format: "name = %@", matching.name!)
+        var character: Character? = nil;
+        
+        do {
+            let found = try context.fetch(req)
+            if found.count > 0 {
+                character = found[0]
+            } else {
+                character = Character(context: context)
+            }
+        } catch {
+            throw error
+        }
+            
+        character!.name = matching.name
+        character!.height = matching.height
+        character!.mass = matching.mass
+        character!.hairColor = matching.hairColor
+        character!.skinColor = matching.skinColor
+        character!.eyeColor = matching.eyeColor
+        character!.birthYear = matching.birthYear
+        character!.gender = matching.gender
+        character!.movieUrls = matching.movieUrls
+        character!.favorite = matching.favorite
+        
+        return character!
+    }
+    
+    class func getAll(in context: NSManagedObjectContext) -> [Character] {
+        let req: NSFetchRequest<Character> = Character.fetchRequest()
+        do {
+            return try context.fetch(req)
+        } catch {
+            return []
+        }
     }
 }

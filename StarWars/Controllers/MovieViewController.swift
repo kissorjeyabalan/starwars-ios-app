@@ -9,10 +9,11 @@
 import UIKit
 
 class MovieViewController: UIViewController {
-    fileprivate let CellIdentifier = "MovieCellIdentifier"
-    fileprivate let SegueMovieDetailsViewController = "MovieDetailsViewController"
+    private let CellIdentifier = "MovieCellIdentifier"
+    private let SegueMovieDetailsViewController = "SegueMovieDetailsViewController"
     
     @IBOutlet weak var movieTableView: UITableView!
+    let viewContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     var movies: [Movie] = [];
     
     override func viewDidLoad() {
@@ -22,23 +23,9 @@ class MovieViewController: UIViewController {
         movieTableView.delegate = self
         movieTableView.dataSource = self;
         
-        fetchAllMovies()
+        movies = Movie.getAll(in: viewContext!)
+        movieTableView.reloadData()
      }
-    
-    func fetchAllMovies() {
-        /*URLSession.shared.getAllMovies {
-            movies, _, _ in
-            if let movies = movies {
-                DispatchQueue.main.async {
-                    self.movies = movies.results
-                    self.movies.sort(by: { (m1, m2) -> Bool in
-                        return m1.episodeID < m2.episodeID
-                    })
-                    self.movieTableView.reloadData()
-                }
-            }
-        }*/
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueMovieDetailsViewController {
@@ -73,7 +60,7 @@ extension MovieViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MovieViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "MovieDetailsViewController", sender: self)
+        performSegue(withIdentifier: SegueMovieDetailsViewController, sender: self)
         movieTableView.deselectRow(at: indexPath, animated: true)
     }
 }
