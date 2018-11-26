@@ -2,19 +2,25 @@
 //  FavoriteViewController.swift
 //  StarWars
 //
-//  Created by Kissor Jeyabalan on 24/11/2018.
-//  Copyright © 2018 Kissor Jeyabalan. All rights reserved.
+//  Created by XYZ on 24/11/2018.
+//  Copyright © 2018 XYZ. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
 class FavoriteViewController: UIViewController {
+    // MARK: - Identifiers
     private let SegueMovieDetailsViewController = "SegueMovieDetailsViewController"
+    
+    // MARK: - Class Properties
     @IBOutlet weak var segmentController: UISegmentedControl!
     @IBOutlet weak var favoriteTableView: UITableView!
+    @IBOutlet weak var recommendationView: RecommendationView!
+    
     let viewContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     
+    // MARK: FetchedResultsControllers
     var currentFetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? = nil
     
     lazy var moviesFetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
@@ -49,6 +55,8 @@ class FavoriteViewController: UIViewController {
         return fetchedResultsController
     }()
     
+    
+    // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,31 +64,31 @@ class FavoriteViewController: UIViewController {
         favoriteTableView.dataSource = self
         
         refreshCurrentFetchedResultsControllerAndFetch()
+        refreshRecommendedMovie()
     }
     
-    
-    @IBAction func changeTable(_ sender: Any) {
-        refreshCurrentFetchedResultsControllerAndFetch()
-    }
-    
+    // MARK: - Favorite character alert
     private func showCharacter(at indexPath: IndexPath) {
         if let character = currentFetchedResultsController?.fetchedObjects?[indexPath.row] as? Character {
             let moviesArr = character.movies!.allObjects as! [Movie]
-            print(moviesArr)
+  
             let moviesCharacterWasIn = moviesArr.map { (movie) -> String in
                 movie.title!
             }.joined(separator: ", ")
             
-            print("MOVIES: ", moviesCharacterWasIn)
-            
-            let alert = UIAlertController(title: "\(character.name!) was in:", message: moviesCharacterWasIn, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Remove from favorites", style: UIAlertAction.Style.destructive, handler: { _ in
+            let alert = UIAlertController(title: "\(character.name!) var i:", message: moviesCharacterWasIn, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Fjern fra favoritter", style: UIAlertAction.Style.destructive, handler: { _ in
                 character.toggleFavorite(in: self.viewContext!)
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Avbryt", style: UIAlertAction.Style.cancel, handler: nil))
             
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    // MARK: - Change favorite table
+    @IBAction func changeTable(_ sender: Any) {
+        refreshCurrentFetchedResultsControllerAndFetch()
     }
     
     private func refreshCurrentFetchedResultsControllerAndFetch() {
@@ -104,8 +112,56 @@ class FavoriteViewController: UIViewController {
             print(error)
         }
     }
+    
+    // MARK: - Movie Recommendation
+    private func refreshRecommendedMovie() {
+        let movieScoreSet = getMovieWithScore()
+
+
+        var recommendedMovie: Movie? = nil
+        var highestScore = 0
+        for movie in movieScoreSet {
+            if movie.value > highestScore {
+                highestScore = movie.value
+                recommendedMovie = movie.key
+            }
+        }
+        
+        if let movie = recommendedMovie {
+            recommendationView.recommendedTitleLabel.text = recommendationView.possibleTitles.randomElement()
+            recommendationView.recommendedMovieLabel.text = movie.title
+        } else {
+            recommendationView.recommendedTitleLabel.text = ":("
+            recommendationView.recommendedMovieLabel.text = "Legg til karakterer i favoritter!"
+        }
+        
+    }
+    
+    private func getMovieWithScore() -> [Movie : Int] {
+        if (currentFetchedResultsController != charactersFetchedResultsController) {
+            try? charactersFetchedResultsController.performFetch()
+        }
+        var movieScoreSet = [Movie : Int]()
+        if let characters = charactersFetchedResultsController.fetchedObjects as? [Character] {
+            for character in characters {
+                if let movies = character.movies {
+                    for movie in movies.allObjects as! [Movie] {
+                        var score = movieScoreSet[movie]
+                        if (score != nil) {
+                            score = score! + 1
+                        } else {
+                            score = 1
+                        }
+                        movieScoreSet[movie] = score!
+                    }
+                }
+            }
+        }
+        return movieScoreSet
+    }
 }
 
+// MARK: - UITableViewDataSource
 extension FavoriteViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -163,6 +219,7 @@ extension FavoriteViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension FavoriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch segmentController.selectedSegmentIndex {
@@ -185,6 +242,7 @@ extension FavoriteViewController: UITableViewDelegate {
 }
 
 // https://github.com/BeiningBogen/iOS-Westerdals/blob/master/forelesning08/README.pdf
+// MARK: - NSFetchedResultsControllerDelegate
 extension FavoriteViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         favoriteTableView.beginUpdates()
@@ -219,6 +277,9 @@ extension FavoriteViewController: NSFetchedResultsControllerDelegate {
     
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if controller == charactersFetchedResultsController {
+            refreshRecommendedMovie()
+        }
         favoriteTableView.endUpdates()
     }
 }

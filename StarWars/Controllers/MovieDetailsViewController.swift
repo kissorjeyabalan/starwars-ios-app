@@ -2,17 +2,16 @@
 //  MovieDetailsViewController.swift
 //  StarWars
 //
-//  Created by Kissor Jeyabalan on 09/11/2018.
-//  Copyright © 2018 Kissor Jeyabalan. All rights reserved.
+//  Created by XYZ on 09/11/2018.
+//  Copyright © 2018 XYZ. All rights reserved.
 //
 
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
+    // MARK: - Class Properties
+    private let viewContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     var movie: Movie!
-    let viewContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-    
-    
     @IBOutlet weak var episodeLabel: UILabel!
     @IBOutlet weak var directorLabel: UILabel!
     @IBOutlet weak var producerLabel: UILabel!
@@ -20,6 +19,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     
+    // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = movie.title
@@ -32,7 +32,12 @@ class MovieDetailsViewController: UIViewController {
         updateFavoriteButtonText()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateFavoriteButtonText()
+    }
     
+    // MARK: - Favorite Button Handlers
     @IBAction func toggleFavorite(_ sender: Any) {
         movie.toggleFavorite(in: viewContext!)
         updateFavoriteButtonText()

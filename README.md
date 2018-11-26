@@ -4,7 +4,7 @@ Jeg bestemte meg for synkronisere alt fra API om karakterer og filmer til Core D
 Det kan ta opp til 5-6 sekunder å synkronisere, siden SWAPI API ikke er så rask. Det blir gjort 10 kall mot API, så det er viktig at man ikke har overskredet maks 10,000 kall mot SWAPI per døgn per IP.
 
 Det er plassert flere MARK i koden, for å finne frem ting enklere.
-
+Det har ikke blitt lagt til splash screen eller app ikon.
 
 ## Kilder
 Kilder skal være nevnt i koden, men i tilfelle det mangler noe, så er dette _alle_ kildene jeg har tatt i bruk:

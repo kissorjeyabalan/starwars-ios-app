@@ -9,6 +9,7 @@
         <attribute name="height" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mass" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="selfUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="skinColor" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="movies" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="characters" inverseEntity="Movie" syncable="YES"/>
     </entity>
@@ -19,11 +20,12 @@
         <attribute name="favorite" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="producer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="selfUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="characters" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="movies" inverseEntity="Character" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Character" positionX="6776.9375" positionY="-3282.83984375" width="128" height="195"/>
-        <element name="Movie" positionX="6607.23046875" positionY="-3449.7578125" width="128" height="165"/>
+        <element name="Character" positionX="6776.9375" positionY="-3282.83984375" width="128" height="210"/>
+        <element name="Movie" positionX="6607.23046875" positionY="-3449.7578125" width="128" height="180"/>
     </elements>
 </model>

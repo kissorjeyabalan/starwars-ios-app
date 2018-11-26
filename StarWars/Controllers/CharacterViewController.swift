@@ -2,20 +2,24 @@
 //  CharacterViewController.swift
 //  StarWars
 //
-//  Created by Kissor Jeyabalan on 09/11/2018.
-//  Copyright © 2018 Kissor Jeyabalan. All rights reserved.
+//  Created by XYZ on 09/11/2018.
+//  Copyright © 2018 XYZ. All rights reserved.
 //
 
 import UIKit
 
 class CharacterViewController: UIViewController {
     
-    fileprivate let CellIdentifier = "CharacterCellIdentifier"
-    let viewContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-    var characters: [Character] = []
+    // MARK: - Identifiers
+    private let CellIdentifier = "CharacterCellIdentifier"
+    
+    // MARK: - Class Properties
+    private let viewContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    private var characters: [Character] = []
     
     @IBOutlet weak var characterCollectionView: UICollectionView!
     
+    // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +35,7 @@ class CharacterViewController: UIViewController {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension CharacterViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = characterCollectionView.bounds.width/2.0
@@ -52,6 +57,7 @@ extension CharacterViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension CharacterViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return characters.count;
@@ -69,7 +75,6 @@ extension CharacterViewController: UICollectionViewDataSource {
             cell.characterImage.backgroundColor = UIColor.black
         }
         
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(toggleFavorite(sender:)))
         tap.numberOfTapsRequired = 1
         cell.characterImage.isUserInteractionEnabled = true
@@ -77,8 +82,8 @@ extension CharacterViewController: UICollectionViewDataSource {
         return cell
     }
     
+    // MARK: Functions
     @objc func toggleFavorite(sender: UITapGestureRecognizer) {
-        print("TOGGLED FAVORITE")
         let tapPoint = sender.location(in: characterCollectionView)
         let indexPath = characterCollectionView.indexPathForItem(at: tapPoint)
         if let index = indexPath {

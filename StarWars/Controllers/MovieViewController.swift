@@ -1,21 +1,24 @@
 //
-//  ViewController.swift
+//  MovieViewController.swift
 //  StarWars
 //
-//  Created by Kissor Jeyabalan on 09/11/2018.
-//  Copyright © 2018 Kissor Jeyabalan. All rights reserved.
+//  Created by XYZ on 09/11/2018.
+//  Copyright © 2018 XYZ. All rights reserved.
 //
 
 import UIKit
 
 class MovieViewController: UIViewController {
+    // MARK: - Identifiers
     private let CellIdentifier = "MovieCellIdentifier"
     private let SegueMovieDetailsViewController = "SegueMovieDetailsViewController"
     
+    // MARK: - Class Properties
     @IBOutlet weak var movieTableView: UITableView!
-    let viewContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-    var movies: [Movie] = [];
+    private let viewContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    private var movies: [Movie] = [];
     
+    // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -27,6 +30,7 @@ class MovieViewController: UIViewController {
         movieTableView.reloadData()
      }
     
+    // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueMovieDetailsViewController {
             if let indexPath = movieTableView.indexPathForSelectedRow {

@@ -14,17 +14,17 @@
 		2F9DC2642195A048001CD048 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9DC2632195A048001CD048 /* Assets.xcassets */; };
 		2F9DC2672195A048001CD048 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9DC2652195A048001CD048 /* LaunchScreen.storyboard */; };
 		2F9DC2782195AE34001CD048 /* SwapiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2772195AE34001CD048 /* SwapiResult.swift */; };
-		2F9DC27A2195AE9E001CD048 /* JSONNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2792195AE9E001CD048 /* JSONNull.swift */; };
 		2F9DC27C2195B03B001CD048 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC27B2195B03B001CD048 /* Movie.swift */; };
-		2F9DC27F2195B1AA001CD048 /* URLSession+Swapi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC27E2195B1AA001CD048 /* URLSession+Swapi.swift */; };
 		2F9DC2812195CC8A001CD048 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2802195CC8A001CD048 /* MovieDetailsViewController.swift */; };
 		2F9DC2832195E173001CD048 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2822195E173001CD048 /* CharacterViewController.swift */; };
 		2F9DC2862195E520001CD048 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2852195E520001CD048 /* CharacterCell.swift */; };
 		2F9DC2882195FBAC001CD048 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DC2872195FBAC001CD048 /* Character.swift */; };
 		2FAFDD7221A83CE3009E3AF3 /* ApiSynchronizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAFDD7121A83CE3009E3AF3 /* ApiSynchronizationViewController.swift */; };
+		2FCDF26521AC384200166DD4 /* Emperor_Sidious.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FCDF26421AC384200166DD4 /* Emperor_Sidious.png */; };
+		2FCDF26721AC38AF00166DD4 /* RecommendationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCDF26621AC38AF00166DD4 /* RecommendationView.xib */; };
+		2FCDF26A21AC3A4B00166DD4 /* RecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDF26921AC3A4B00166DD4 /* RecommendationView.swift */; };
 		2FDB4CCA21976C450090201D /* APISynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB4CC921976C450090201D /* APISynchronizer.swift */; };
 		2FF0C1BB2197808F007FD53B /* CodingUserInfoKey+Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF0C1BA2197808F007FD53B /* CodingUserInfoKey+Context.swift */; };
-		2FF0C1BD21978D85007FD53B /* Date+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF0C1BC21978D85007FD53B /* Date+Localization.swift */; };
 		2FFB610921A9DB4F006059A7 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB610821A9DB4F006059A7 /* FavoriteViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,17 +38,17 @@
 		2F9DC2662195A048001CD048 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F9DC2682195A048001CD048 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F9DC2772195AE34001CD048 /* SwapiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapiResult.swift; sourceTree = "<group>"; };
-		2F9DC2792195AE9E001CD048 /* JSONNull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNull.swift; sourceTree = "<group>"; };
 		2F9DC27B2195B03B001CD048 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		2F9DC27E2195B1AA001CD048 /* URLSession+Swapi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Swapi.swift"; sourceTree = "<group>"; };
 		2F9DC2802195CC8A001CD048 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		2F9DC2822195E173001CD048 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		2F9DC2852195E520001CD048 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		2F9DC2872195FBAC001CD048 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		2FAFDD7121A83CE3009E3AF3 /* ApiSynchronizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiSynchronizationViewController.swift; sourceTree = "<group>"; };
+		2FCDF26421AC384200166DD4 /* Emperor_Sidious.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Emperor_Sidious.png; sourceTree = "<group>"; };
+		2FCDF26621AC38AF00166DD4 /* RecommendationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendationView.xib; sourceTree = "<group>"; };
+		2FCDF26921AC3A4B00166DD4 /* RecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationView.swift; sourceTree = "<group>"; };
 		2FDB4CC921976C450090201D /* APISynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISynchronizer.swift; sourceTree = "<group>"; };
 		2FF0C1BA2197808F007FD53B /* CodingUserInfoKey+Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodingUserInfoKey+Context.swift"; sourceTree = "<group>"; };
-		2FF0C1BC21978D85007FD53B /* Date+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Localization.swift"; sourceTree = "<group>"; };
 		2FFB610821A9DB4F006059A7 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,7 +85,7 @@
 				2F9DC2842195E4FA001CD048 /* Cells */,
 				2F9DC27D2195B194001CD048 /* Extensions */,
 				2F9DC2762195ADE8001CD048 /* Utility */,
-				2F9DC2732195A2DA001CD048 /* Other */,
+				2F9DC2732195A2DA001CD048 /* Supporting Files */,
 				2F9DC2712195A1B9001CD048 /* Controllers */,
 				2F9DC26F2195A1AB001CD048 /* Models */,
 				2F9DC2702195A1B3001CD048 /* Views */,
@@ -97,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				2F9DC2772195AE34001CD048 /* SwapiResult.swift */,
-				2F9DC2792195AE9E001CD048 /* JSONNull.swift */,
 				2F9DC27B2195B03B001CD048 /* Movie.swift */,
 				2F9DC2872195FBAC001CD048 /* Character.swift */,
 			);
@@ -107,6 +106,7 @@
 		2F9DC2702195A1B3001CD048 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2FCDF26821AC3A2400166DD4 /* Custom */,
 				2F9DC25D2195A047001CD048 /* Main.storyboard */,
 				2F9DC2652195A048001CD048 /* LaunchScreen.storyboard */,
 			);
@@ -125,15 +125,16 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		2F9DC2732195A2DA001CD048 /* Other */ = {
+		2F9DC2732195A2DA001CD048 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2FCDF26321AC383000166DD4 /* Images */,
 				2F9DC2632195A048001CD048 /* Assets.xcassets */,
 				2F9DC2592195A047001CD048 /* AppDelegate.swift */,
 				2F9DC2682195A048001CD048 /* Info.plist */,
 				2F9DC2602195A047001CD048 /* StarWars.xcdatamodeld */,
 			);
-			path = Other;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		2F9DC2762195ADE8001CD048 /* Utility */ = {
@@ -147,9 +148,7 @@
 		2F9DC27D2195B194001CD048 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2F9DC27E2195B1AA001CD048 /* URLSession+Swapi.swift */,
 				2FF0C1BA2197808F007FD53B /* CodingUserInfoKey+Context.swift */,
-				2FF0C1BC21978D85007FD53B /* Date+Localization.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -160,6 +159,23 @@
 				2F9DC2852195E520001CD048 /* CharacterCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		2FCDF26321AC383000166DD4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2FCDF26421AC384200166DD4 /* Emperor_Sidious.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		2FCDF26821AC3A2400166DD4 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				2FCDF26621AC38AF00166DD4 /* RecommendationView.xib */,
+				2FCDF26921AC3A4B00166DD4 /* RecommendationView.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +239,8 @@
 				2F9DC2672195A048001CD048 /* LaunchScreen.storyboard in Resources */,
 				2F9DC2642195A048001CD048 /* Assets.xcassets in Resources */,
 				2F9DC25F2195A047001CD048 /* Main.storyboard in Resources */,
+				2FCDF26521AC384200166DD4 /* Emperor_Sidious.png in Resources */,
+				2FCDF26721AC38AF00166DD4 /* RecommendationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,14 +256,12 @@
 				2F9DC2832195E173001CD048 /* CharacterViewController.swift in Sources */,
 				2F9DC2812195CC8A001CD048 /* MovieDetailsViewController.swift in Sources */,
 				2F9DC2882195FBAC001CD048 /* Character.swift in Sources */,
-				2FF0C1BD21978D85007FD53B /* Date+Localization.swift in Sources */,
 				2FFB610921A9DB4F006059A7 /* FavoriteViewController.swift in Sources */,
-				2F9DC27F2195B1AA001CD048 /* URLSession+Swapi.swift in Sources */,
 				2F9DC25C2195A047001CD048 /* MovieViewController.swift in Sources */,
 				2F9DC25A2195A047001CD048 /* AppDelegate.swift in Sources */,
 				2F9DC2862195E520001CD048 /* CharacterCell.swift in Sources */,
 				2F9DC27C2195B03B001CD048 /* Movie.swift in Sources */,
-				2F9DC27A2195AE9E001CD048 /* JSONNull.swift in Sources */,
+				2FCDF26A21AC3A4B00166DD4 /* RecommendationView.swift in Sources */,
 				2FF0C1BB2197808F007FD53B /* CodingUserInfoKey+Context.swift in Sources */,
 				2F9DC2622195A047001CD048 /* StarWars.xcdatamodeld in Sources */,
 				2F9DC2782195AE34001CD048 /* SwapiResult.swift in Sources */,
@@ -396,7 +412,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2J3672AKUW;
-				INFOPLIST_FILE = StarWars/Other/Info.plist;
+				INFOPLIST_FILE = "StarWars/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -414,7 +430,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2J3672AKUW;
-				INFOPLIST_FILE = StarWars/Other/Info.plist;
+				INFOPLIST_FILE = "StarWars/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

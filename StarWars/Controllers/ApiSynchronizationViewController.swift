@@ -2,20 +2,27 @@
 //  ApiSynchronizationViewController.swift
 //  StarWars
 //
-//  Created by Kissor Jeyabalan on 09/11/2018.
-//  Copyright © 2018 Kissor Jeyabalan. All rights reserved.
+//  Created by XYZ on 09/11/2018.
+//  Copyright © 2018 XYZ. All rights reserved.
 //
 
 import UIKit
 
 class ApiSynchronizationViewController: UIViewController {
-    
+    // MARK: - Class Properties
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var syncTextLabel: UILabel!
     weak var timer: Timer?
-    let texts = ["Synchronizing...", "This API is very slow, isn't it...", "Hang on, almost finished!", "Shouldn't take too long now..."]
-    var currentTextIndex: Int = 0
+    let texts = [
+        "The Jedi forbid Jedi having families, in case of of things like grief leading them to the dark side",
+        "Ewok is never mentioned in the original trilogy.",
+        "The Rebel Base on Yavin was a Sith temple, not a Jedi temple.",
+        "One of the asteroids in the asteroid chase in Empire Strikes Back is a potato.",
+        "Luke's original last name was Starkiller.",
+        "Help me, Obi-Wan Kenobi. You're my only hope."
+    ]
     
+    // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,14 +32,15 @@ class ApiSynchronizationViewController: UIViewController {
         scheduleLabelRotation()
     }
     
+    // MARK: - Functions
     func scheduleLabelRotation() {
-        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { timer in
-            self.syncTextLabel.text = self.texts[self.currentTextIndex]
-            self.currentTextIndex = (self.currentTextIndex + 1) % self.texts.count
+        syncTextLabel.text = self.texts.randomElement()
+        timer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: true, block: { timer in
+            self.syncTextLabel.text = self.texts.randomElement()
         })
     }
     
-    
+    // MARK: - Synchronization Observer
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let apiIsSynchronized = change?[.newKey] as? Bool {
             if (apiIsSynchronized) {
@@ -41,14 +49,10 @@ class ApiSynchronizationViewController: UIViewController {
                 DispatchQueue.main.async {
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     let rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainApplicationEntryStoryboard")
-                    
-                    print("dismissing")
-                        appDelegate.window?.rootViewController = rootViewController
-                        appDelegate.window?.makeKeyAndVisible()
-                    //self.present(rootViewController!, animated: true, completion: nil)
+    
+                    appDelegate.window?.rootViewController = rootViewController
+                    appDelegate.window?.makeKeyAndVisible()
                 }
-                
-                
             }
         }
     }
