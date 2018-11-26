@@ -1,6 +1,7 @@
 # Star Wars - Eksamen
 ## Info
-Xcode 10.1 benyttet, testet med iOS 12.
+Xcode 10.1 benyttet, testet med iOS 12.1.
+Layout har blitt testet for iPhone 5S og nyere med simulator.
 
 Jeg bestemte meg for synkronisere alt fra API om karakterer og filmer til Core Data. Dette gjøres en gang i uken, og gjøres når appen startes.
 Det kan ta opp til 5-6 sekunder å synkronisere, siden SWAPI API ikke er så rask. Det blir gjort 10 kall mot API, så det er viktig at man ikke har overskredet maks 10,000 kall mot SWAPI per døgn per IP.
@@ -18,4 +19,5 @@ Kilder skal være nevnt i koden, men i tilfelle det mangler noe, så er dette _a
 - Date variance: https://stackoverflow.com/questions/24723431/swift-days-between-two-nsdates
 - Release viewcontrollers: https://stackoverflow.com/questions/40100696/removing-all-previously-loaded-viewcontrollers-from-memory-ios-swift?rq=1
 - Map: https://developer.apple.com/documentation/swift/enumeratedsequence/2907233-map
+- Custom view: https://medium.com/swift2go/swift-custom-uiview-with-xib-file-211bb8bbd6eb
 - Bilde: https://vignette.wikia.nocookie.net/starwars/images/d/d8/Emperor_Sidious.png/revision/latest
