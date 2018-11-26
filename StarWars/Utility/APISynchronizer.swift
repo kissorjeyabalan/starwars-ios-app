@@ -2,23 +2,35 @@
 //  APISynchronizer.swift
 //  StarWars
 //
-//  Created by Kissor Jeyabalan on 10/11/2018.
-//  Copyright © 2018 Kissor Jeyabalan. All rights reserved.
+//  Created by XYZ on 10/11/2018.
+//  Copyright © 2018 XYZ. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
+/**
+ This class is used to synchronize core data with information from the API.
+ It loops through all characters and movies, and saves them to core data.
+ 
+ Unfortunately, it's kind of slow - this is because of the API being -very- slow.
+ This is a known issue with SWAPI.
+ **/
 class APISynchronizer: NSObject {
+    // MARK: - Class Properties
     static let shared = APISynchronizer()
     public var managedObjectContext: NSManagedObjectContext?
     
+    
+    // MARK: - Initializers
     override init() {
         super.init()
         UserDefaults.standard.addObserver(self, forKeyPath: "CharactersSynchronized", options: NSKeyValueObservingOptions.new, context: nil)
         UserDefaults.standard.addObserver(self, forKeyPath: "MoviesSynchronized", options: NSKeyValueObservingOptions.new, context: nil)
     }
     
+    
+    // MARK: - Synchronizers
     func syncAll() {
         UserDefaults.standard.set(false, forKey: "CharactersSynchronized")
         UserDefaults.standard.set(false, forKey: "MoviesSynchronized")
@@ -27,23 +39,28 @@ class APISynchronizer: NSObject {
         syncCharacters(with: URL(string: "https://swapi.co/api/people/")!)
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if let objectIsSynchronized = change?[.newKey] as? Bool {
-            let other = keyPath == "MoviesSynchronized" ? "CharactersSynchronized" : "MoviesSynchronized"
-            let otherIsSynchronized = UserDefaults.standard.bool(forKey: other)
-            
-            if (otherIsSynchronized && objectIsSynchronized) {
-                UserDefaults.standard.set(true, forKey: "ApiSynchronized")
-            } else {
-                UserDefaults.standard.set(false, forKey: "ApiSynchronized")
+    func syncRelationships() {
+        let allCharacters = Character.getAll(in: managedObjectContext!)
+        for character in allCharacters {
+            for url in character.movieUrls {
+                let fetchReq: NSFetchRequest<Movie> = Movie.fetchRequest()
+                fetchReq.predicate = NSPredicate(format: "selfUrl = %@", url.absoluteString)
+                var results = try? managedObjectContext!.fetch(fetchReq)
+                if results != nil && results!.count > 0 {
+                    if let movie = results?[0] {
+                        character.addToMovies(movie)
+                        movie.addToCharacters(character)
+                    }
+                }
             }
         }
+        try? managedObjectContext!.save()
     }
     
     func syncMovies(with startUrl: URL) {
         getFromApi(with: startUrl) { (swapi: SwapiResult<Movie>?) in
             for movie: Movie in (swapi?.results)! {
-                self.syncMovie(with: movie)
+                _ = try? Movie.updateOrCreate(with: movie, in: self.managedObjectContext!)
             }
             if swapi?.next != nil {
                 self.syncMovies(with: (swapi?.next)!)
@@ -56,7 +73,7 @@ class APISynchronizer: NSObject {
     func syncCharacters(with startUrl: URL) {
         getFromApi(with: startUrl) { (swapi: SwapiResult<Character>?) in
             for character: Character in (swapi?.results)! {
-                self.syncCharacter(with: character)
+                _ = try? Character.updateOrCreate(with: character, in: self.managedObjectContext!)
             }
             if swapi?.next != nil {
                 self.syncCharacters(with: (swapi?.next)!)
@@ -66,52 +83,30 @@ class APISynchronizer: NSObject {
         }
     }
     
-    private func syncCharacter(with character: Character) {
-        let foundCharacter = try? Character.updateOrCreate(with: character, in: managedObjectContext!)
-        if foundCharacter != nil {
-            for movieUrl in foundCharacter!.movieUrls {
-                getFromApi(with: movieUrl) { (movie: Movie?) in
-                    if movie != nil {
-                        let foundMovie = try? Movie.updateOrCreate(with: movie!, in: self.managedObjectContext!)
-                        if foundMovie != nil {
-                            print("found movie not null")
-                            foundCharacter!.addToMovies(foundMovie!)
-                            foundMovie!.addToCharacters(foundCharacter!)
-                            try! self.managedObjectContext?.save()
-                        }
-                    }
-                }
+    
+    // MARK: - NSUserDefaults Observer
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if let objectIsSynchronized = change?[.newKey] as? Bool {
+            let other = keyPath == "MoviesSynchronized" ? "CharactersSynchronized" : "MoviesSynchronized"
+            let otherIsSynchronized = UserDefaults.standard.bool(forKey: other)
+            
+            if (otherIsSynchronized && objectIsSynchronized) {
+                syncRelationships()
+                UserDefaults.standard.set(true, forKey: "ApiSynchronized")
+            } else {
+                UserDefaults.standard.set(false, forKey: "ApiSynchronized")
             }
         }
     }
     
-    private func syncMovie(with movie: Movie) {
-        let foundMovie = try? Movie.updateOrCreate(with: movie, in: managedObjectContext!)
-        if foundMovie != nil {
-            for characterUrl in foundMovie!.characterUrls {
-                getFromApi(with: characterUrl) { (character: Character?) in
-                    if character != nil {
-                        let foundCharacter = try? Character.updateOrCreate(with: character!, in: self.managedObjectContext!)
-                        if foundCharacter != nil {
-                            print("found character not null")
-                            foundMovie!.addToCharacters(foundCharacter!)
-                            foundCharacter!.addToMovies(foundMovie!)
-                            try! self.managedObjectContext?.save()
-                        }
-                    }
-                }
-            }
-        }
-    }
     
+    // MARK: - API Communication
     private func getFromApi<T: Decodable>(with url: URL, completionHandler: @escaping (T?) -> Void) {
         getSwapi(with: url) { (data, response, error) in
             guard let data = data, let managedObjectContext = self.managedObjectContext, error == nil else {
-                print("failed")
                 return
             }
             
-            //print("data is \(data.)")
             let decoder = JSONDecoder()
             if let context = CodingUserInfoKey.context {
                 decoder.userInfo[context] = managedObjectContext
@@ -129,8 +124,6 @@ class APISynchronizer: NSObject {
                 completionHandler(nil, response, error)
                 return
             }
-            
-            print("data is \(data.count)")
             completionHandler(data, response, nil)
         }
     }
