@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+// https://medium.com/swift2go/swift-custom-uiview-with-xib-file-211bb8bbd6eb
 class RecommendationView: UIView {
     // MARK: - Class Properties
     @IBOutlet var contentView: UIView!

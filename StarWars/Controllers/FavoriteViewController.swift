@@ -76,7 +76,7 @@ class FavoriteViewController: UIViewController {
                 movie.title!
             }.joined(separator: ", ")
             
-            let alert = UIAlertController(title: "\(character.name!) var i:", message: moviesCharacterWasIn, preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "\(character.name!) var med i:", message: moviesCharacterWasIn, preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Fjern fra favoritter", style: UIAlertAction.Style.destructive, handler: { _ in
                 character.toggleFavorite(in: self.viewContext!)
             }))
