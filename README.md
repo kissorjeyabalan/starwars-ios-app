@@ -1,5 +1,7 @@
 #Star Wars - Eksamen
 ## Info
+Xcode 10.1 benyttet, testet med iOS 12.
+
 Jeg bestemte meg for synkronisere alt fra API om karakterer og filmer til Core Data. Dette gjøres en gang i uken, og gjøres når appen startes.
 Det kan ta opp til 5-6 sekunder å synkronisere, siden SWAPI API ikke er så rask. Det blir gjort 10 kall mot API, så det er viktig at man ikke har overskredet maks 10,000 kall mot SWAPI per døgn per IP.
 
